@@ -8,12 +8,12 @@ module Shogun
       Shogun.reload_frequency ||= 5
       Shogun.layout ||= "application"
 
-      Shogun::RouteService.reload!
+      Shogun::RouteService.instance.reload!
 
       Shogun.daemon = Proc.new do
         Thread.new do
           loop do
-            Shogun::RouteService.reload!
+            Shogun::RouteService.instance.reload!
             sleep(Shogun.reload_frequency)
           end
         end

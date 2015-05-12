@@ -1,8 +1,9 @@
 PATH
   remote: .
   specs:
-    shogun (0.0.4)
-      httparty
+    shogun (0.0.5)
+      hamster
+      http
       rails
 
 GEM
@@ -43,17 +44,29 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    addressable (2.3.8)
     arel (6.0.0)
+    atomic (1.1.99)
     builder (3.2.2)
     byebug (4.0.5)
       columnize (= 0.9.0)
     columnize (0.9.0)
+    domain_name (0.5.24)
+      unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
-    httparty (0.13.3)
-      json (~> 1.8)
-      multi_xml (>= 0.5.2)
+    hamster (1.0.0)
+      atomic (~> 1.1)
+    http (0.8.9)
+      addressable (~> 2.3)
+      http-cookie (~> 1.0)
+      http-form_data (~> 1.0.1)
+      http_parser.rb (~> 0.6.0)
+    http-cookie (1.0.2)
+      domain_name (~> 0.5)
+    http-form_data (1.0.1)
+    http_parser.rb (0.6.0)
     i18n (0.7.0)
     json (1.8.2)
     loofah (2.0.2)
@@ -63,7 +76,6 @@ GEM
     mime-types (2.5)
     mini_portile (0.6.2)
     minitest (5.6.1)
-    multi_xml (0.5.5)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     rack (1.6.1)
@@ -105,6 +117,9 @@ GEM
     thread_safe (0.3.5)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.1)
 
 PLATFORMS
   ruby
