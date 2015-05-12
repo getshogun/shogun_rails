@@ -1,6 +1,6 @@
 require "http"
 require "hamster/hash"
-require "hamster/set"
+require "set"
 
 module Shogun
   class RouteService
@@ -8,7 +8,6 @@ module Shogun
 
     def initialize
       @pages = Hamster.hash
-      @last = Hamster.set
       @lock = Mutex.new
     end
 
@@ -20,8 +19,15 @@ module Shogun
     def reload!
       begin
         @lock.synchronize { _reload! }
+        GC.start
       rescue
       end
+    end
+
+    def html(uuid)
+      r = HTTP.get "#{Shogun.url}/#{uuid}.html"
+      return nil unless r.status.code == 200
+      r.to_s
     end
 
     private
@@ -37,18 +43,17 @@ module Shogun
         return
       end
 
-      response = HTTP.get "#{Shogun.url}/#{Shogun.site_id}/#{Shogun.secret_token}-raw_html.json"
+      response = HTTP.get "#{Shogun.url}/#{Shogun.site_id}-#{Shogun.secret_token}.json"
 
       if response.status.code == 200
         json = response.parse
-        set = json.inject(Hamster.set) { |set, page| set.add(page["uuid"]) }
+        set = json.each_with_object(Set.new) { |page, set| set.add(page["uuid"]) }
 
-        unless @last == set
+        unless Set.new(@pages.values.to_a) == set
           @pages = json.inject(Hamster.hash) do |hash, page|
-            p = {path: page["path"].downcase, html: page["raw_html"], uuid: page["uuid"]}.freeze
+            p = {path: page["path"].downcase, uuid: page["uuid"]}.freeze
             hash.put(p[:path], p)
           end
-          @last = set
         end
       end
     end
