@@ -47,6 +47,7 @@ module Shogun
 
     def self.reload_shogun_route_set!
       Rails.application.routes_reloader.reload!
+      GC.start
     end
 
     def self.reload!
