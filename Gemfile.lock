@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    shogun (0.0.1)
+    shogun (0.0.4)
       httparty
       rails
 

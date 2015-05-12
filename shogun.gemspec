@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Finbarr Taylor"]
   s.email       = ["finbarrtaylor@gmail.com"]
   s.homepage    = "https://getshogun.com"
-  s.summary     = "TODO: Summary of Shogun."
-  s.description = "TODO: Description of Shogun."
+  s.summary     = "Shogun CMS."
+  s.description = "Drag/drop page editor for your Rails app."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
