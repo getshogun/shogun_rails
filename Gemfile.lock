@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    shogun (0.0.5)
+    shogun (0.0.8)
       hamster
       http
       rails
