@@ -18,6 +18,7 @@ module Shogun
     end
 
     def self.reload!
+      GC.start
       begin
         lock.synchronize { _reload! }
       rescue
