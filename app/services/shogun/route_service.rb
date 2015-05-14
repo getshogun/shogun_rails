@@ -8,7 +8,6 @@ module Shogun
 
     def initialize
       @pages = Hamster.hash
-      @lock = Mutex.new
     end
 
     def [](path)
@@ -18,8 +17,7 @@ module Shogun
 
     def reload!
       begin
-        @lock.synchronize { _reload! }
-        GC.start
+        _reload!
       rescue
       end
     end
