@@ -4,8 +4,11 @@ if Shogun.automount
     get '/(*path)' => 'shogun/pages#show'
   end
 else
-  Shogun::Engine.routes.draw do
+  Rails.application.routes.draw do
     get '/shogun/previews/:uuid' => 'shogun/previews#show'
-    get '/(*path)' => 'shogun/pages#show'
+  end
+
+  Shogun::Engine.routes.draw do
+    get '/(*path)' => 'pages#show'
   end
 end
