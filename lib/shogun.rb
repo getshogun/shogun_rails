@@ -8,7 +8,9 @@ module Shogun
   mattr_accessor :secret_token
   mattr_accessor :url
   mattr_accessor :layout
+  mattr_accessor :automount
 end
 
 Shogun.url = "https://getshogun-production.global.ssl.fastly.net"
 Shogun.preview_url = "https://getshogun-production.herokuapp.com"
+Shogun.automount = true
