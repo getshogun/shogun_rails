@@ -18,7 +18,13 @@ SHOGUN_SECRET_TOKEN={your secret token}
 
 If you are using Unicorn, you also need to add this line in your `after_fork` configuration block:
 
+```ruby
+Shogun.daemon.call
 ```
+
+Full example:
+
+```ruby
 # config/unicorn.rb
 after_fork do
   ...
