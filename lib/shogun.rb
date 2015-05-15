@@ -12,5 +12,5 @@ module Shogun
 end
 
 Shogun.url = "https://getshogun-production.global.ssl.fastly.net"
-Shogun.preview_url = "https://getshogun-production.herokuapp.com"
+Shogun.preview_url = "https://getshogun.com"
 Shogun.automount = true
