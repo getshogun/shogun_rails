@@ -1,7 +1,15 @@
+class ShogunConstraint
+  def matches?(request)
+    Shogun::RouteService.instance[request.fullpath.split('?').first.downcase].present?
+  end
+end
+
 if Shogun.automount
   Rails.application.routes.draw do
     get '/shogun/previews/:uuid' => 'shogun/previews#show'
-    get '/(*path)' => 'shogun/pages#show'
+    constraints ShogunConstraint.new do
+      get '/(*path)' => 'shogun/pages#show'
+    end
   end
 else
   Rails.application.routes.draw do
@@ -9,6 +17,8 @@ else
   end
 
   Shogun::Engine.routes.draw do
-    get '/(*path)' => 'pages#show'
+    constraints ShogunConstraint.new do
+      get '/(*path)' => 'pages#show'
+    end
   end
 end
