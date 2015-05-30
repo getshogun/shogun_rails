@@ -31,16 +31,6 @@ module Shogun
     private
 
     def _reload!
-      unless Shogun.secret_token.present?
-        Rails.logger.warn "Missing Shogun.secret_token!"
-        return
-      end
-
-      unless Shogun.site_id.present?
-        Rails.logger.warn "Missing Shogun.site_id!"
-        return
-      end
-
       response = HTTP.get "#{Shogun.url}/#{Shogun.site_id}-#{Shogun.secret_token}.json"
 
       if response.status.code == 200

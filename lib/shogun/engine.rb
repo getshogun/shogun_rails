@@ -11,10 +11,16 @@ module Shogun
       Shogun::RouteService.instance.reload!
 
       Shogun.daemon = Proc.new do
-        Thread.new do
-          loop do
-            Shogun::RouteService.instance.reload!
-            sleep(Shogun.reload_frequency)
+        if Shogun.secret_token.nil?
+          Rails.logger.warn "Missing Shogun.secret_token!"
+        elsif Shogun.site_id.nil?
+          Rails.logger.warn "Missing Shogun.site_id!"
+        else
+          Thread.new do
+            loop do
+              Shogun::RouteService.instance.reload!
+              sleep(Shogun.reload_frequency)
+            end
           end
         end
       end
