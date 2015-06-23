@@ -10,6 +10,8 @@ class Shogun::PagesController < ApplicationController
   private
 
   def get_html(hash)
+    return Shogun::RouteService.instance.html(uuid) if hash.is_a?(String)
+
     languages = hash["languages"]
     uuid = hash["uuid"]
     return Shogun::RouteService.instance.html(uuid) unless languages.any?
