@@ -18,13 +18,6 @@ class Shogun::PagesController < ApplicationController
       return Shogun::RouteService.instance.html(uuid, params[:locale].to_s)
     end
 
-    preferred = http_accept_language.user_preferred_languages
-    preferred.each do |lang|
-      if languages.include?(lang)
-        return Shogun::RouteService.instance.html(uuid, lang)
-      end
-    end
-
     if languages.include?(I18n.locale.to_s)
       return Shogun::RouteService.instance.html(uuid, I18n.locale.to_s)
     end
