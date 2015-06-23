@@ -22,8 +22,12 @@ module Shogun
       end
     end
 
-    def html(uuid)
-      r = HTTP.get "#{Shogun.url}/#{uuid}.html"
+    def html(uuid, lang=nil)
+      if lang.present?
+        r = HTTP.get "#{Shogun.url}/#{uuid}.#{lang}.html"
+      else
+        r = HTTP.get "#{Shogun.url}/#{uuid}.html"
+      end
       return nil unless r.status.code == 200
       r.to_s
     end
@@ -39,7 +43,7 @@ module Shogun
 
         unless Set.new(@pages.values.to_a) == set
           @pages = json.inject(Hamster.hash) do |hash, page|
-            hash.put(page["path"].downcase, page["uuid"])
+            hash.put(page["path"].downcase, Hamster.hash("uuid" => page["uuid"], "languages" => page["languages"]))
           end
         end
       end
