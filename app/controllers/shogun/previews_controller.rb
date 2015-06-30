@@ -1,6 +1,6 @@
 require "http"
 
-class Shogun::PreviewsController < ApplicationController
+class Shogun::PreviewsController < Shogun::ApplicationController
   def show
     not_found! unless Shogun.secret_token.present?
     sl = params[:shogun_lang].to_s

@@ -1,6 +1,6 @@
 require "http_accept_language"
 
-class Shogun::PagesController < ApplicationController
+class Shogun::PagesController < Shogun::ApplicationController
   def show
     hash = Shogun::RouteService.instance[request.fullpath.split('?').first.downcase]
     not_found! unless hash.present?
