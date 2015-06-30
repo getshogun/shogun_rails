@@ -27,7 +27,12 @@ module Shogun
 
       if defined?(Puma)
         if Puma.respond_to?(:cli_config)
-          Puma.cli_config.options[:before_worker_boot] << Shogun.daemon
+          options = Puma.cli_config.options
+          if !options[:before_worker_boot].nil?
+            options[:before_worker_boot] << Shogun.daemon
+          elsif !options[:worker_boot].nil?
+            options[:worker_boot] << Shogun.daemon
+          end
         end
       elsif defined?(Unicorn)
         # must be manually setup
