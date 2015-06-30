@@ -1,3 +1,5 @@
+require "http_accept_language"
+
 class Shogun::PagesController < ApplicationController
   def show
     hash = Shogun::RouteService.instance[request.fullpath.split('?').first.downcase]
