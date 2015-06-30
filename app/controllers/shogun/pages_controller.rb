@@ -20,6 +20,14 @@ class Shogun::PagesController < ApplicationController
       return Shogun::RouteService.instance.html(uuid, params[:locale].to_s)
     end
 
+    pl = http_accept_language.user_preferred_languages
+
+    pl.each do |lang|
+      if languages.include?(lang)
+        return Shogun::RouteService.instance.html(uuid, lang)
+      end
+    end
+
     if languages.include?(I18n.locale.to_s)
       return Shogun::RouteService.instance.html(uuid, I18n.locale.to_s)
     end
@@ -29,5 +37,9 @@ class Shogun::PagesController < ApplicationController
 
   def not_found!
     raise ActionController::RoutingError.new('Not Found')
+  end
+
+  def http_accept_language
+    HttpAcceptLanguage::Parser.new(request.env["HTTP_ACCEPT_LANGUAGE"])
   end
 end
