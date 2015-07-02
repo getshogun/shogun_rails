@@ -2,6 +2,7 @@ require "http_accept_language"
 
 class Shogun::PagesController < Shogun::ApplicationController
   def show
+    byebug
     hash = Shogun::RouteService.instance[request.fullpath.split('?').first.downcase]
     not_found! unless hash.present?
     @html = get_html(hash)
