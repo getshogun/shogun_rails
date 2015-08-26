@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    shogun (0.2.3)
+    shogun (0.3.3)
       hamster
       http
       http_accept_language

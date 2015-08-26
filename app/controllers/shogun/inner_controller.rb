@@ -1,4 +1,4 @@
-class Shogun::InnerController < ApplicationController
+class Shogun::InnerController < Shogun::ApplicationController
   def show
     d = Digest::SHA256.hexdigest "#{Shogun.site_id}-#{Shogun.secret_token}"
     return head :unauthorized unless params[:d] == d
