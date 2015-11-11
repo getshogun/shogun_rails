@@ -7,7 +7,7 @@ module Shogun
     include Singleton
 
     def initialize
-      @pages = Hamster.hash
+      @pages = Hamster::Hash[]
     end
 
     def [](path)
@@ -42,8 +42,8 @@ module Shogun
         set = json.each_with_object(Set.new) { |page, set| set.add(page["uuid"]) }
 
         unless Set.new(@pages.values.to_a) == set
-          @pages = json.inject(Hamster.hash) do |hash, page|
-            hash.put(page["path"].downcase, Hamster.hash("uuid" => page["uuid"], "languages" => page["languages"]))
+          @pages = json.inject(Hamster::Hash[]) do |hash, page|
+            hash.put(page["path"].downcase, Hamster::Hash["uuid" => page["uuid"], "languages" => page["languages"]])
           end
         end
       end
