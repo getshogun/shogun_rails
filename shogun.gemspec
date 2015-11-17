@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails"
   s.add_dependency "http"
-  s.add_dependency "hamster"
+  s.add_dependency "hamster", '~> 2.x'
   s.add_dependency "http_accept_language"
 
   s.add_development_dependency "sqlite3"
