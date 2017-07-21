@@ -3,7 +3,6 @@ module Shogun
     isolate_namespace Shogun
 
     initializer "shogun.init" do
-      return unless Rails.env.production?
       Shogun.secret_token ||= ENV["SHOGUN_SECRET_TOKEN"]
       Shogun.site_id ||= ENV["SHOGUN_SITE_ID"]
       Shogun.reload_frequency ||= 5
@@ -26,7 +25,9 @@ module Shogun
         end
       end
 
-      if defined?(Puma)
+      if !Rails.env.production?
+        # noop
+      elsif defined?(Puma)
         if Puma.respond_to?(:cli_config)
           options = Puma.cli_config.options
           if !options[:before_worker_boot].nil?
