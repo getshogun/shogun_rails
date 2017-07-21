@@ -3,6 +3,7 @@ module Shogun
     isolate_namespace Shogun
 
     initializer "shogun.init" do
+      return unless Rails.env.production?
       Shogun.secret_token ||= ENV["SHOGUN_SECRET_TOKEN"]
       Shogun.site_id ||= ENV["SHOGUN_SITE_ID"]
       Shogun.reload_frequency ||= 5
