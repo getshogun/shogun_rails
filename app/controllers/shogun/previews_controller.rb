@@ -13,10 +13,4 @@ class Shogun::PreviewsController < Shogun::ApplicationController
     @html = r.to_s
     render layout: Shogun.layout
   end
-
-  private
-
-  def not_found!
-    raise ActionController::RoutingError.new('Not Found')
-  end
 end

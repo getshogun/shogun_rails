@@ -7,8 +7,7 @@ end
 if Shogun.site_id.present? && Shogun.secret_token.present?
   Rails.application.routes.draw do
     get '/shogun/previews/:uuid' => 'shogun/previews#show'
-    get '/shogun/editor/outer' => 'shogun/outer#show'
-    get '/shogun/editor/inner' => 'shogun/inner#show'
+    get '/shogun/probe' => 'shogun/probe#show'
   end
 
   if Shogun.automount

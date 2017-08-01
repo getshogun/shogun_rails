@@ -38,10 +38,6 @@ class Shogun::PagesController < Shogun::ApplicationController
     Shogun::RouteService.instance.html(uuid)
   end
 
-  def not_found!
-    raise ActionController::RoutingError.new('Not Found')
-  end
-
   def http_accept_language
     HttpAcceptLanguage::Parser.new(request.env["HTTP_ACCEPT_LANGUAGE"])
   end

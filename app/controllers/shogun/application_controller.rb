@@ -2,6 +2,10 @@ module Shogun
   class ApplicationController < ::ApplicationController
     helper Rails.application.routes.url_helpers
     include ActionView::Helpers::TagHelper
+
+    def not_found!
+      raise ActionController::RoutingError.new('Not Found')
+    end
   end
 end
 
