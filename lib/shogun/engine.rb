@@ -34,6 +34,9 @@ module Shogun
             options[:before_worker_boot] << Shogun.daemon
           elsif !options[:worker_boot].nil?
             options[:worker_boot] << Shogun.daemon
+          elsif options[:workers].to_i.zero?
+            # single mode
+            Shogun.daemon.call
           end
         end
       elsif defined?(Unicorn)
