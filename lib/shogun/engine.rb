@@ -25,7 +25,7 @@ module Shogun
         end
       end
 
-      if !Rails.env.production?
+      if !Shogun.environments.include?(Rails.env)
         # noop
       elsif defined?(Puma)
         if Puma.respond_to?(:cli_config)

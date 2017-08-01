@@ -9,8 +9,10 @@ module Shogun
   mattr_accessor :url
   mattr_accessor :layout
   mattr_accessor :automount
+  mattr_accessor :environments
 end
 
 Shogun.url = "https://getshogun-production.global.ssl.fastly.net"
 Shogun.preview_url = "https://getshogun.com"
 Shogun.automount = true
+Shogun.environments = ["production"]
