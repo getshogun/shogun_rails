@@ -7,7 +7,7 @@ class Shogun::PagesController < Shogun::ApplicationController
     @html = get_html(hash)
     not_found! unless @html.present?
     @shogun_meta_tags = hash["meta_tags"]
-    render layout: Shogun.layout
+    render layout: (hash["layout"] || Shogun.layout)
   end
 
   private

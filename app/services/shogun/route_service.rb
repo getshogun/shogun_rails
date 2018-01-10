@@ -43,7 +43,7 @@ module Shogun
 
         unless Set.new(@pages.values.to_a) == set
           @pages = json.inject(Hamster::Hash[]) do |hash, page|
-            hash.put(page["path"].downcase, Hamster::Hash["uuid" => page["uuid"], "languages" => page["languages"], "meta_tags" => page["meta_tags"].to_a])
+            hash.put(page["path"].downcase, Hamster::Hash["uuid" => page["uuid"], "languages" => page["languages"], "meta_tags" => page["meta_tags"].to_a, "layout" => page["layout"]])
           end
         end
       end
